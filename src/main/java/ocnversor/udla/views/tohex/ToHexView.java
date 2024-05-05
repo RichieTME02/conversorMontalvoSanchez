@@ -17,6 +17,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import ocnversor.udla.views.MainLayout;
+import ocnversor.udla.metodos.decTOhex;
 
 @PageTitle("ToHex")
 @Route(value = "toHex", layout = MainLayout.class)
@@ -69,5 +70,44 @@ public class ToHexView extends Composite<VerticalLayout> {
         layoutColumn2.add(buttonPrimary);
         layoutColumn2.add(textField2);
         layoutColumn2.add(layoutColumn3);
+
+        // Agregar ActionListener a textField
+        textField.addValueChangeListener(event -> {
+            String value = event.getValue();
+            if (!value.isEmpty()) {
+                int decimal = Integer.parseInt(value);
+                String hex = decTOhex.decimalToHex(decimal);
+                textField2.setValue(hex);
+            }
+        });
+
+        // Agregar ActionListener a textField2
+        textField2.addValueChangeListener(event -> {
+            String value = event.getValue();
+            if (!value.isEmpty()) {
+                int decimal = decTOhex.hexToDecimal(value);
+                if (decimal!= -1) { // Verificar si la conversión fue exitosa
+                    textField.setValue(String.valueOf(decimal));
+                }
+            }
+        });
+
+        // Agregar ClickListener al botón
+        buttonPrimary.addClickListener(event -> {
+            String value = textField.getValue();
+            if (!value.isEmpty()) {
+                int decimal = Integer.parseInt(value);
+                String hex = decTOhex.decimalToHex(decimal);
+                textField2.setValue(hex);
+            } else {
+                value = textField2.getValue();
+                if (!value.isEmpty()) {
+                    int decimal = decTOhex.hexToDecimal(value);
+                    if (decimal!= -1) { // Verificar si la conversión fue exitosa
+                        textField.setValue(String.valueOf(decimal));
+                    }
+                }
+            }
+        });
     }
 }

@@ -1,6 +1,7 @@
 package ocnversor.udla.views.home;
 
 import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.Uses;
@@ -17,6 +18,10 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.theme.lumo.LumoUtility.Gap;
 import ocnversor.udla.views.MainLayout;
+import ocnversor.udla.views.tobinario.ToBinarioView;
+import ocnversor.udla.views.tohex.ToHexView;
+import ocnversor.udla.views.toipv4.ToIPv4View;
+import ocnversor.udla.views.toipv6.ToIPv6View;
 
 @PageTitle("Home")
 @Route(value = "", layout = MainLayout.class)
@@ -32,14 +37,14 @@ public class HomeView extends Composite<VerticalLayout> {
         H2 h2 = new H2();
         H2 h22 = new H2();
         HorizontalLayout layoutRow3 = new HorizontalLayout();
-        Button buttonPrimary = new Button();
-        Button buttonPrimary2 = new Button();
+        Button ir = new Button();
+        Button ir2 = new Button();
         HorizontalLayout layoutRow4 = new HorizontalLayout();
         H2 h23 = new H2();
         H2 h24 = new H2();
         HorizontalLayout layoutRow5 = new HorizontalLayout();
-        Button buttonPrimary3 = new Button();
-        Button buttonPrimary4 = new Button();
+        Button ir3 = new Button();
+        Button ir4 = new Button();
         getContent().setWidth("100%");
         getContent().getStyle().set("flex-grow", "1");
         layoutRow.addClassName(Gap.MEDIUM);
@@ -74,12 +79,12 @@ public class HomeView extends Composite<VerticalLayout> {
         layoutRow3.setHeight("35px");
         layoutRow3.setAlignItems(Alignment.CENTER);
         layoutRow3.setJustifyContentMode(JustifyContentMode.CENTER);
-        buttonPrimary.setText("Ir");
-        buttonPrimary.setWidth("600px");
-        buttonPrimary.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonPrimary2.setText("Ir");
-        buttonPrimary2.setWidth("600px");
-        buttonPrimary2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        ir.setText("Ir");
+        ir.setWidth("600px");
+        ir.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        ir2.setText("Ir");
+        ir2.setWidth("600px");
+        ir2.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         layoutRow4.setWidthFull();
         layoutColumn2.setFlexGrow(1.0, layoutRow4);
         layoutRow4.addClassName(Gap.MEDIUM);
@@ -100,12 +105,12 @@ public class HomeView extends Composite<VerticalLayout> {
         layoutRow5.setHeight("35px");
         layoutRow5.setAlignItems(Alignment.CENTER);
         layoutRow5.setJustifyContentMode(JustifyContentMode.CENTER);
-        buttonPrimary3.setText("Ir");
-        buttonPrimary3.setWidth("600px");
-        buttonPrimary3.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonPrimary4.setText("Ir");
-        buttonPrimary4.setWidth("600px");
-        buttonPrimary4.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        ir3.setText("Ir");
+        ir3.setWidth("600px");
+        ir3.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        ir4.setText("Ir");
+        ir4.setWidth("600px");
+        ir4.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         getContent().add(layoutRow);
         layoutRow.add(h1);
         getContent().add(layoutColumn2);
@@ -113,13 +118,29 @@ public class HomeView extends Composite<VerticalLayout> {
         layoutRow2.add(h2);
         layoutRow2.add(h22);
         layoutColumn2.add(layoutRow3);
-        layoutRow3.add(buttonPrimary);
-        layoutRow3.add(buttonPrimary2);
+        layoutRow3.add(ir);
+        layoutRow3.add(ir2);
         layoutColumn2.add(layoutRow4);
         layoutRow4.add(h23);
         layoutRow4.add(h24);
         layoutColumn2.add(layoutRow5);
-        layoutRow5.add(buttonPrimary3);
-        layoutRow5.add(buttonPrimary4);
+        layoutRow5.add(ir3);
+        layoutRow5.add(ir4);
+
+        ir.addClickListener(event -> {
+            UI.getCurrent().navigate(ToBinarioView.class);
+        });
+
+        ir2.addClickListener(event -> {
+            UI.getCurrent().navigate(ToHexView.class);
+        });
+
+        ir3.addClickListener(event -> {
+            UI.getCurrent().navigate(ToIPv4View.class);
+        });
+
+        ir4.addClickListener(event -> {
+            UI.getCurrent().navigate(ToIPv6View.class);
+        });
     }
 }
