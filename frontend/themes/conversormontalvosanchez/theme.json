@@ -1,0 +1,9 @@
+{
+  "lumoImports" : [ "typography", "color", "spacing", "badge", "utility" ],
+  "assets" : {
+    "@fontsource/encode-sans-sc" : {
+      "*.css" : "@fontsource/encode-sans-sc",
+      "files/*" : "@fontsource/encode-sans-sc/files"
+    }
+  }
+}
